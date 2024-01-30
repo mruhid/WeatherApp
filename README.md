@@ -33,10 +33,12 @@ A simple weather app that allows users to check the current weather conditions.
     ```bash
     cd WeatheApp
     ```
-3. open 'frontend' foolder:
- ```bash
+3. open frontend folder on terminal:
+
+    ```bash
     cd frontend
-    ``` 
+    ```
+
 4. Install dependencies:
 
     ```bash
