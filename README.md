@@ -33,7 +33,7 @@ A simple weather app that allows users to check the current weather conditions.
     ```bash
     cd WeatheApp
     ```
-3. open 'frontend' foolder
+3. open 'frontend' foolder:
  ```bash
     cd frontend
     ``` 
