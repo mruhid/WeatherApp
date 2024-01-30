@@ -1,48 +1,46 @@
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   const [location, setLocation] = useState("")
   const [data, setData] = useState([])
-  useEffect(()=>{
+  useEffect(() => {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=baku&appid=5db5854d947c35de4a5e0f0f439945ab&units=metric")
-    .then(response => response.json())
-    .then(response=> {
-      setData(response)
-    })
-    console.log("bbb")
+      .then(response => response.json())
+      .then(response => {
+        setData(response)
+      })
 
     setTimeout(() => {
       setLooding(true)
 
     }, 1000);
 
-  },[])
+  }, [])
   const [input, setInput] = useState("")
-  const [looding,setLooding]=useState(false)
-  let [temp,setTemp]=useState("")
-  
+  const [looding, setLooding] = useState(false)
+  let [temp, setTemp] = useState("")
+
 
   const handleInput = (e) => {
     setLocation(e.target.value)
     setInput(e.target.value)
   }
 
-  const curentTime=()=>{
+  const curentTime = () => {
     const currentTimeUTC = new Date();
     const offsetInSeconds = data.timezone;
-      const currentTimeWithOffset = new Date(currentTimeUTC.getTime() + offsetInSeconds * 1000);
+    const currentTimeWithOffset = new Date(currentTimeUTC.getTime() + offsetInSeconds * 1000);
 
-      // Format the time for display
-      const options = { 
-        hour: 'numeric', 
-        minute: 'numeric', 
-        second: 'numeric',
-        timeZone: 'UTC'
-      };
-      const formattedTime = currentTimeWithOffset.toLocaleTimeString('en-US', options);
-      return formattedTime
+    // Format the time for display
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      timeZone: 'UTC'
+    };
+    const formattedTime = currentTimeWithOffset.toLocaleTimeString('en-US', options);
+    return formattedTime
   }
   const searchLocation = () => {
     console.log(location)
@@ -53,13 +51,12 @@ function App() {
         setData(a)
 
       })
-      setTemp(data.main.temp)
-      console.log(temp)
+    setTemp(data.main.temp)
     setInput("")
   }
 
-  const searcPlace=(loc)=>{
-    
+  const searcPlace = (loc) => {
+
     setLocation(loc)
     let url = "https://api.openweathermap.org/data/2.5/weather?q=" + loc + "&appid=5db5854d947c35de4a5e0f0f439945ab&units=metric"
     fetch(url)
@@ -68,12 +65,22 @@ function App() {
         setData(a)
 
       })
-    
+
   }
+  const Icon = () => {
+    if (data) {
+      const iconUrl = 'https://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png'
+      return iconUrl
+    }
+    return false
+  }
+
+
   return (
     <>
-      {looding?<div className="weather__container">
-        <div className='weather_information'>
+      {looding ? <div className="weather__container">
+        {Icon()!== false && <div className="icon"><img src={Icon()} alt="" /></div>
+        }        <div className='weather_information'>
           <div className='temprator'><h1>{Math.round(data.main.temp)}°C</h1></div>
           <div className='locations'>
             <div className='name'><h2>{data.name}</h2></div>
@@ -94,18 +101,18 @@ function App() {
           </div>
           <div className="other_place">
             <ul>
-              <li onClick={()=>searcPlace("italy")} className='li'>Italy</li>
-              <li onClick={()=>searcPlace("argentina")} className='li'>Argentina</li>
-              <li onClick={()=>searcPlace("china")} className='li'>China</li>
-              <li onClick={()=>searcPlace("turkey")} className='li'>Turkey</li>
-              <li onClick={()=>searcPlace("france")} className='li'>France</li>
+              <li onClick={() => searcPlace("italy")} className='li'>Italy</li>
+              <li onClick={() => searcPlace("argentina")} className='li'>Argentina</li>
+              <li onClick={() => searcPlace("china")} className='li'>China</li>
+              <li onClick={() => searcPlace("turkey")} className='li'>Turkey</li>
+              <li onClick={() => searcPlace("france")} className='li'>France</li>
 
 
 
             </ul>
           </div>
         </div>
-      </div>:""}
+      </div> : ""}
     </>
   )
 }

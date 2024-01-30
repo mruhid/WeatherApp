@@ -128,20 +128,31 @@ flex-direction: row;}
   transform: scale(1.1);
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1110px) {
   body {
   background-color: lightblue;
   }
   .weather__container{
     display: flex;
     flex-direction: column;
+    height: 600px;
   }
   .weather_information{
-    margin-top: 0;
+    margin-top: 0px;
   }
   .countryes{
     justify-content: center;
+    margin-top: 90px;
     display: flex;
+  }
+  .icon img{
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 140px;
+    left:50px ;
+    width: 170px;
+    aspect-ratio: 1/1;
   }
   .other_place ul{
     justify-content: center;
@@ -211,6 +222,12 @@ flex-direction: row;}
     .li{
       width: 90%;
     }
+  }
+  .icon{
+    display: flex;
+    position: fixed;
+    top: 210px;
+    font-size: 2rem;
   }
 
 
