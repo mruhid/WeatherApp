@@ -11,8 +11,8 @@ A simple weather app that allows users to check the current weather conditions.
 
 ## Screenshots
 
-![Screenshot 1](,/screenshots/Screenshot1.png)
-![Screenshot 2](,/screenshots/Screenshot2.png)
+![Screenshot1](,/screenshots/Screenshot1.png)
+![Screenshot2](,/screenshots/Screenshot2.png)
 
 ## Getting Started
 
